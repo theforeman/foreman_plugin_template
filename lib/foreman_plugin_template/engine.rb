@@ -37,6 +37,10 @@ module ForemanPluginTemplate
 
         # add dashboard widget
         widget 'foreman_plugin_template_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
+
+        extend_page "smart_proxies/show" do |cx|
+          cx.add_pagelet :main_tabs, :name => "Plugin", :partial => "smart_proxies/show/tab_content"
+        end
       end
     end
 
