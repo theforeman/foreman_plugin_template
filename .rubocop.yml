@@ -21,3 +21,30 @@ Style/Next:
 # Support both ruby19 and hash_rockets
 Style/HashSyntax:
   Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/AlignParameters:
+  Enabled: false
+
+Style/ParenthesesAroundCondition:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/Next:
+  Enabled: false
+
+Style/FormatString:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
