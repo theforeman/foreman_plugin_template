@@ -37,7 +37,7 @@ namespace :foreman_plugin_template do
   end
 end
 
-Rake::Task[:test].enhance ['test:foreman_plugin_template']
+Rake::Task["test:plugins"].enhance ['test:foreman_plugin_template']
 
 load 'tasks/jenkins.rake'
 if Rake::Task.task_defined?(:'jenkins:unit')
