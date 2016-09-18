@@ -7,6 +7,18 @@
 See [How_to_Install_a_Plugin](http://projects.theforeman.org/projects/foreman/wiki/How_to_Install_a_Plugin)
 for how to install Foreman plugins
 
+## Migrating your plugin:
+
+```
+rails db:migrate SCOPE=foreman_plugin_example
+```
+
+## Uninstalling your plugin:
+
+```
+rails db:migrate SCOPE=foreman_plugin_example VERSION=0
+```
+
 ## Usage
 
 *Usage here*
@@ -35,4 +47,3 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-

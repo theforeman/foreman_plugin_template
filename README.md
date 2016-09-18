@@ -47,6 +47,14 @@ development team below.
 [Translating](http://projects.theforeman.org/projects/foreman/wiki/Translating#Translating-for-developers)
 has more information about writing code with i18n support.
 
+## Migrations
+
+Your migrations should be placed under `db/migrate` folder. Every migration file
+should be suffixed by the name of the plugin, for example:
+```
+db/migrate/20990101999999_add_my_table.foreman_plugin_example.rb
+```
+
 ## Getting help
 
 The Foreman developers IRC channel and mailing list are the best places to get help:
