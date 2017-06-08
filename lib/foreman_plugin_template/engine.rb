@@ -38,19 +38,17 @@ module ForemanPluginTemplate
       end
     end
 
-    # Precompile any JS or CSS files under app/assets/
-    # If requiring files from each other, list them explicitly here to avoid precompiling the same
-    # content twice.
-    assets_to_precompile =
-      Dir.chdir(root) do
-        Dir['app/assets/javascripts/**/*', 'app/assets/stylesheets/**/*'].map do |f|
-          f.split(File::SEPARATOR, 4).last
-        end
-      end
-    initializer 'foreman_plugin_template.assets.precompile' do |app|
-      app.config.assets.precompile += assets_to_precompile
-    end
     initializer 'foreman_plugin_template.configure_assets', group: :assets do
+      # Precompile any JS or CSS files under app/assets/
+      # If requiring files from each other, list them explicitly here to avoid precompiling the same
+      # content twice.
+      assets_to_precompile =
+        Dir.chdir(root) do
+          Dir['app/assets/javascripts/**/*', 'app/assets/stylesheets/**/*'].map do |f|
+            f.split(File::SEPARATOR, 4).last
+          end
+        end
+
       SETTINGS[:foreman_plugin_template] = { assets: { precompile: assets_to_precompile } }
     end
 
@@ -61,12 +59,6 @@ module ForemanPluginTemplate
         HostsHelper.send(:include, ForemanPluginTemplate::HostsHelperExtensions)
       rescue => e
         Rails.logger.warn "ForemanPluginTemplate: skipping engine hook (#{e})"
-      end
-    end
-
-    rake_tasks do
-      Rake::Task['db:seed'].enhance do
-        ForemanPluginTemplate::Engine.load_seed
       end
     end
 
