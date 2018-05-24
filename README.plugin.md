@@ -11,6 +11,12 @@ for how to install Foreman plugins
 
 *Usage here*
 
+## Compatibility
+
+| Foreman | Plugin |
+| ---------------:| --------------:|
+| >= 1.x        | 0 - 0.x         |
+
 ## TODO
 
 *Todo list here*
