@@ -16,11 +16,15 @@ module ForemanPluginTemplate
 
     initializer 'foreman_plugin_template.register_plugin', :before => :finisher_hook do |_app|
       Foreman::Plugin.register :foreman_plugin_template do
-        requires_foreman '>= 1.16'
+        requires_foreman '>= 2.0.0'
+
+        # Add Global JS file for extending foreman-core components and routes
+        register_global_js_file 'fills'
 
         # Add permissions
         security_block :foreman_plugin_template do
-          permission :view_foreman_plugin_template, :'foreman_plugin_template/hosts' => [:new_action]
+          permission :view_foreman_plugin_template, { :'foreman_plugin_template/hosts' => [:new_action],
+                                                      :'foreman_plugin_template/react' => [:index] }
         end
 
         # Add a new role called 'Discovery' if it doesn't exist

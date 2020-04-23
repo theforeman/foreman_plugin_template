@@ -1,0 +1,16 @@
+ 
+<% content_for(:javascripts) do %>
+  <%= webpacked_plugins_js_for :'foreman_plugin_template' %>
+<% end %>
+<% content_for(:stylesheets) do %>
+  <%= webpacked_plugins_css_for :'foreman_plugin_template' %>
+<% end %>
+
+<% content_for(:content) do %>
+  <%= notifications %>
+  <div id="organization-id" data-id="<%= Organization.current.id if Organization.current %>" ></div>
+  <div id="user-id" data-id="<%= User.current.id if User.current %>" ></div>
+  <div id="foremanPluginTemplateRoot"></div>
+<% end %>
+<%= render file: "layouts/base" %>
+<%= mount_react_component('ForemanPluginTemplate', '#foremanPluginTemplateRoot') %>

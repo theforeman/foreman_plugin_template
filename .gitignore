@@ -9,3 +9,7 @@ locale/*.mo
 locale/*/*.edit.po
 locale/*/*.po.time_stamp
 locale/*/*.pox
+node_modules
+package-lock.json
+Gemfile.lock
+coverage
