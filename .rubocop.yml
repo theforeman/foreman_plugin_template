@@ -1,21 +1,36 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-minitest
+
+AllCops:
+  TargetRubyVersion: 2.5
+  TargetRailsVersion: 6.0
+  Exclude:
+    - 'node_modules/**/*'
+
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+  IndentationWidth: 2
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: 111 # TODO: discuss and set this
+
 Rails:
   Enabled: true
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
 
 # Don't enforce documentation
 Style/Documentation:
   Enabled: false
 
-# Force before_filter until upgrade to Rails 4
-Rails/ActionFilter:
-  EnforcedStyle: filter
-
-Metrics/MethodLength:
-  Max: 20
-
-Metrics/LineLength:
-  Max: 111 # TODO: discuss and set this
-
-Style/Next:
+# Don't enforce frozen string literals
+Style/FrozenStringLiteralComment:
   Enabled: false
 
 # Support both ruby19 and hash_rockets
