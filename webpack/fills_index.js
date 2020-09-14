@@ -1,4 +1,4 @@
-// This example for extanding foreman-core's component via slot&fill
+// This is an example of extending foreman-core's component via slot&fill
 
 /*
 import React from 'react';

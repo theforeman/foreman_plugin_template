@@ -11,8 +11,8 @@ Gem::Specification.new do |s|
   # also update locale/gemspec.rb
   s.description = 'TODO: Description of ForemanPluginTemplate.'
 
-  s.files = Dir['{app,config,db,lib,locale}/**/*'] + ['LICENSE', 'Rakefile', 'README.md']
-  s.test_files = Dir['test/**/*']
+  s.files = Dir['{app,config,db,lib,locale,webpack}/**/*'] + ['LICENSE', 'Rakefile', 'README.md', 'package.json']
+  s.test_files = Dir['test/**/*'] + Dir['webpack/**/__tests__/*.js']
 
   s.add_development_dependency 'rubocop'
   s.add_development_dependency 'rdoc'

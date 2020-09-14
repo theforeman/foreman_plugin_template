@@ -21,7 +21,7 @@ const EmptyState = ({ description }) => {
       <PfEmptyState.Info>{description}</PfEmptyState.Info>
       <PfEmptyState.Action>
         <Button
-          href="https://theforeman.github.io/foreman"
+          href="https://example.com/foreman"
           bsStyle="primary"
           bsSize="large"
         >

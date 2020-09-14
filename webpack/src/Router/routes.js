@@ -1,10 +1,10 @@
-import WelcomPage from './WelcomePage';
+import WelcomePage from './WelcomePage';
 
 const routes = {
   welcome: {
     path: '/foreman_plugin_template',
     exact: true,
-    component: WelcomPage,
+    component: WelcomePage,
   },
 };
 

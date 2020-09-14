@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import PluginTemplateRoute from './Router';
+import ForemanPluginTemplateRoute from './Router';
 
-const PluginTemplate = () => (
+const ForemanPluginTemplate = () => (
   <BrowserRouter>
-    <PluginTemplateRoute />
+    <ForemanPluginTemplateRoute />
   </BrowserRouter>
 );
 
-export default PluginTemplate;
+export default ForemanPluginTemplate;
