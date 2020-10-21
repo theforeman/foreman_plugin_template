@@ -18,8 +18,9 @@ module ForemanPluginTemplate
       Foreman::Plugin.register :foreman_plugin_template do
         requires_foreman '>= 2.0.0'
 
-        # Add Global JS file for extending foreman-core components and routes
+        # Add Global files for extending foreman-core components and routes
         register_global_js_file 'fills'
+        register_global_js_file 'routes'
 
         # Add permissions
         security_block :foreman_plugin_template do

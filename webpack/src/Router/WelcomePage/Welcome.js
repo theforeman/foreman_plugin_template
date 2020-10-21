@@ -1,11 +1,11 @@
 import React from 'react';
 import { translate as __ } from 'foremanReact/common/I18n';
-import EmptyState from '../../Components/EmptyState/EmptyState';
+import ExtendedEmptyState from '../../Components/EmptyState/ExtendedEmptyState';
 
 const WelcomePage = () => (
-  <EmptyState
-    description={__(`This is an example for a full react page! 
-  For further documentation please visit foreman's Storybook page or run it locally via 'npm run stories'`)}
+  <ExtendedEmptyState
+    description={__(`This is an example for a full react page in a foreman's plugin.
+  For further documentation please visit foreman's Storybook page or run it locally by running 'npm run stories'`)}
   />
 );
 
