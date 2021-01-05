@@ -22,6 +22,7 @@ usage if ARGV.size != 1
 
 snake = ARGV[0]
 camel = snake.camel_case
+camel_lower = camel[0].downcase + camel[1..-1]
 
 if snake == camel
   puts "Could not camelize '#{snake}' - exiting"
@@ -38,6 +39,7 @@ Find.find('.') do |path|
   tmp_file = "#{path}.tmp"
   system(%(sed 's/foreman_plugin_template/#{snake}/g' #{path} > #{tmp_file}))
   system(%(sed 's/ForemanPluginTemplate/#{camel}/g' #{tmp_file} > #{path}))
+  system(%(sed 's/foremanPluginTemplate/#{camel_lower}/g' #{tmp_file} > #{path}))
   system(%(rm #{tmp_file}))
 end
 

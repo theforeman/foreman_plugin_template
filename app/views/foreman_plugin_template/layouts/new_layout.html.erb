@@ -1,0 +1,10 @@
+<% title(_("Plugin Template")) %>
+
+<div id="main">
+  <div id="content">
+    <%= notifications %>
+    <%= yield %>
+  </div>
+</div>
+
+<%= render :template => 'layouts/base' %>
