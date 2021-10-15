@@ -36,7 +36,7 @@ These examples show how to add to Foreman in various ways.
 
 ### Further examples
 
-The [How to create a plugin](http://projects.theforeman.org/projects/foreman/wiki/How_to_Create_a_Plugin)
+The [How to create a plugin](https://github.com/theforeman/foreman/blob/develop/developer_docs/how_to_create_a_plugin.asciidoc)
 wiki page contains a lot of information on supported plugin extension points in
 Foreman and how to use them from a plugin.
 
