@@ -2,6 +2,7 @@ module ForemanPluginTemplate
   class Engine < ::Rails::Engine
     isolate_namespace ForemanPluginTemplate
     engine_name 'foreman_plugin_template'
+    register_gettext
 
     config.autoload_paths += Dir["#{config.root}/app/controllers/concerns"]
     config.autoload_paths += Dir["#{config.root}/app/helpers/concerns"]
@@ -17,7 +18,7 @@ module ForemanPluginTemplate
 
     initializer 'foreman_plugin_template.register_plugin', :before => :finisher_hook do |_app|
       Foreman::Plugin.register :foreman_plugin_template do
-        requires_foreman '>= 2.4.0'
+        requires_foreman '>= 3.7.0'
 
         # Add Global files for extending foreman-core components and routes
         register_global_js_file 'global'
@@ -57,12 +58,6 @@ module ForemanPluginTemplate
       Rake::Task['db:seed'].enhance do
         ForemanPluginTemplate::Engine.load_seed
       end
-    end
-
-    initializer 'foreman_plugin_template.register_gettext', after: :load_config_initializers do |_app|
-      locale_dir = File.join(File.expand_path('../../..', __FILE__), 'locale')
-      locale_domain = 'foreman_plugin_template'
-      Foreman::Gettext::Support.add_text_domain locale_domain, locale_dir
     end
   end
 end
