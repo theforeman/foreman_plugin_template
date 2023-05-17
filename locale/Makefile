@@ -14,7 +14,7 @@ POFILES = $(shell find . -name '$(DOMAIN).po')
 MOFILES = $(patsubst %.po,%.mo,$(POFILES))
 POXFILES = $(patsubst %.po,%.pox,$(POFILES))
 EDITFILES = $(patsubst %.po,%.edit.po,$(POFILES))
-JSFILES = $(shell find ../app/assets/javascripts/locale -name '$(DOMAIN).js')
+JSFILES = $(shell find ../app/assets/javascripts/*/locale -name '$(DOMAIN).js')
 
 %.mo: %.po
 	mkdir -p $(shell dirname $@)/LC_MESSAGES
