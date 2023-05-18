@@ -43,7 +43,7 @@ uniq-po:
 	done
 
 tx-pull: $(EDITFILES)
-	tx pull -f
+	cd .. && tx pull -f
 	for f in $(EDITFILES) ; do \
 		sed -i 's/^\("Project-Id-Version: \).*$$/\1$(DOMAIN) $(VERSION)\\n"/' $$f; \
 	done
