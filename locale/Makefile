@@ -55,7 +55,9 @@ tx-update: tx-pull
 	@echo then run make -C locale mo-files to finish
 	@echo
 
-mo-files: $(MOFILES)
+build-mo-files: $(MOFILES)
+
+mo-files: build-mo-files
 	git add $(POFILES) $(POTFILE) $(JSFILES) ../locale/*/LC_MESSAGES
 	git commit -m "i18n - pulling from tx"
 	@echo
