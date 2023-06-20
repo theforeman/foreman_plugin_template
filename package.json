@@ -9,8 +9,6 @@
     "test:watch": "tfm-test --plugin --watchAll",
     "test:current": "tfm-test --plugin --watch",
     "publish-coverage": "tfm-publish-coverage",
-    "stories": "tfm-stories --plugin",
-    "stories:build": "tfm-build-stories --plugin",
     "create-react-component": "yo react-domain"
   },
   "repository": {
@@ -32,7 +30,6 @@
     "@theforeman/builder": "^6.0.0",
     "@theforeman/eslint-plugin-foreman": "6.0.0",
     "@theforeman/find-foreman": "^4.8.0",
-    "@theforeman/stories": "^7.0.0",
     "@theforeman/test": "^8.0.0",
     "@theforeman/vendor-dev": "^6.0.0",
     "babel-eslint": "^10.0.3",
