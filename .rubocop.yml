@@ -8,6 +8,7 @@ AllCops:
   TargetRailsVersion: 6.0
   Exclude:
     - 'node_modules/**/*'
+    - 'vendor/**/*'
 
 Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
