@@ -16,5 +16,8 @@ Gem::Specification.new do |s|
   s.test_files = Dir['test/**/*'] + Dir['webpack/**/__tests__/*.js']
 
   s.add_development_dependency 'rubocop'
+  s.add_development_dependency 'rubocop-minitest'
+  s.add_development_dependency 'rubocop-performance'
+  s.add_development_dependency 'rubocop-rails'
   s.add_development_dependency 'rdoc'
 end
