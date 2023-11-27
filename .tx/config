@@ -1,7 +1,7 @@
 [main]
-host = https://www.transifex.com
+host = https://app.transifex.com
 
-[foreman.foreman_plugin_template]
+[o:foreman:p:foreman:r:foreman_plugin_template]
 file_filter = locale/<lang>/foreman_plugin_template.edit.po
 source_file = locale/foreman_plugin_template.pot
 source_lang = en
