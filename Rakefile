@@ -20,8 +20,6 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-APP_RAKEFILE = File.expand_path('test/dummy/Rakefile', __dir__)
-
 Bundler::GemHelper.install_tasks
 
 require 'rake/testtask'
