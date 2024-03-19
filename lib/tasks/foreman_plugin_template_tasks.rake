@@ -41,8 +41,3 @@ namespace :foreman_plugin_template do
 end
 
 Rake::Task[:test].enhance ['test:foreman_plugin_template']
-
-load 'tasks/jenkins.rake'
-if Rake::Task.task_defined?(:'jenkins:unit')
-  Rake::Task['jenkins:unit'].enhance ['test:foreman_plugin_template', 'foreman_plugin_template:rubocop']
-end

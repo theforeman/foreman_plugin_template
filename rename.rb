@@ -29,26 +29,20 @@ if snake == camel
   exit 1
 end
 
-old_dirs = []
 Find.find('.') do |path|
-  next unless File.file?(path)
-  next if path =~ /\.git/
-  next if path == './rename.rb'
-
-  # Change content on all files
-  tmp_file = "#{path}.tmp"
-  system(%(sed 's/foreman_plugin_template/#{snake}/g' #{path} > #{tmp_file}))
-  system(%(sed 's/ForemanPluginTemplate/#{camel}/g' #{tmp_file} > #{path}))
-  system(%(sed 's/foremanPluginTemplate/#{camel_lower}/g' #{tmp_file} > #{path}))
-  system(%(rm #{tmp_file}))
+  if File.basename(path) == '.git'
+    Find.prune
+  elsif File.file?(path)
+    system(%(sed -i 's/foreman_plugin_template/#{snake}/g; s/ForemanPluginTemplate/#{camel}/g; s/foremanPluginTemplate/#{camel_lower}/g' #{path}))
+  end
 end
 
+old_dirs = []
 Find.find('.') do |path|
   # Change all the paths to the new snake_case name
   if path =~ /foreman_plugin_template/i
     new = path.gsub('foreman_plugin_template', snake)
     # Recursively copy the directory and store the original for deletion
-    # Check for $ because we don't need to copy template/hosts for example
     if File.directory?(path) && path =~ /foreman_plugin_template$/i
       FileUtils.cp_r(path, new)
       old_dirs << path
@@ -63,6 +57,7 @@ end
 FileUtils.rm_rf(old_dirs)
 
 FileUtils.mv('README.plugin.md', 'README.md')
+FileUtils.mv('.github/workflows/ci.yml.tpl', '.github/workflows/ci.yml')
 
 puts 'All done!'
 puts "Add this to Foreman's bundler configuration:"

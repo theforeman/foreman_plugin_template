@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.ref_name }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  rubocop:
+    name: Rubocop
+    uses: theforeman/actions/.github/workflows/rubocop.yml@v0
+    with:
+      command: bundle exec rubocop --parallel --format github
+
+  test:
+    name: Ruby Tests
+    needs: rubocop
+    uses: theforeman/actions/.github/workflows/foreman_plugin.yml@v0
+    with:
+      plugin: foreman_plugin_template
+
+  rename_test:
+    name: Rename Script Test
+    needs: [rubocop, test]
+    runs-on: ubuntu-latest
+
+    env:
+      PLUGIN_NAME: foreman_plugin_template
+      FILES_TO_CHECK: "README.md,.github/workflows/ci.yml"
+
+    steps:
+      - name: Run rename.rb
+        run: |
+          ./rename.rb $PLUGIN_NAME
+
+      - name: Verify Renaming
+        run: |
+          IFS=',' read -r -a files <<< "$FILES_TO_CHECK"
+
+          for file in "${files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "$file not found!"
+              exit 1
+            fi
+
+            if ! grep -q "$PLUGIN_NAME" "$file"; then
+              echo "Expected content not found in $file"
+              exit 1
+            fi
+          done
+          
+          echo "All files renamed successfully and content verified!"
