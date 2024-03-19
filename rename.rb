@@ -45,17 +45,16 @@ end
 
 Find.find('.') do |path|
   # Change all the paths to the new snake_case name
-  if /foreman_plugin_template/i.match?(path)
-    new = path.gsub('foreman_plugin_template', snake)
-    # Recursively copy the directory and store the original for deletion
-    # Check for $ because we don't need to copy template/hosts for example
-    if File.directory?(path) && path =~ /foreman_plugin_template$/i
-      FileUtils.cp_r(path, new)
-      old_dirs << path
-    else
-      # gsub replaces all instances, so it will work on the new directories
-      FileUtils.mv(path, new)
-    end
+  next unless /foreman_plugin_template/i.match?(path)
+  new = path.gsub('foreman_plugin_template', snake)
+  # Recursively copy the directory and store the original for deletion
+  # Check for $ because we don't need to copy template/hosts for example
+  if File.directory?(path) && path =~ /foreman_plugin_template$/i
+    FileUtils.cp_r(path, new)
+    old_dirs << path
+  else
+    # gsub replaces all instances, so it will work on the new directories
+    FileUtils.mv(path, new)
   end
 end
 
