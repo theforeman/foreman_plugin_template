@@ -26,7 +26,7 @@ module ForemanPluginTemplate
         # Add permissions
         security_block :foreman_plugin_template do
           permission :view_foreman_plugin_template, { :'foreman_plugin_template/example' => [:new_action],
-                                                      :'react' => [:index] }
+                                                      :react => [:index] }
         end
 
         # Add a new role called 'Discovery' if it doesn't exist
@@ -45,13 +45,10 @@ module ForemanPluginTemplate
 
     # Include concerns in this config.to_prepare block
     config.to_prepare do
-
-      begin
-        Host::Managed.send(:include, ForemanPluginTemplate::HostExtensions)
-        HostsHelper.send(:include, ForemanPluginTemplate::HostsHelperExtensions)
-      rescue StandardError => e
-        Rails.logger.warn "ForemanPluginTemplate: skipping engine hook (#{e})"
-      end
+      Host::Managed.include ForemanPluginTemplate::HostExtensions
+      HostsHelper.include ForemanPluginTemplate::HostsHelperExtensions
+    rescue StandardError => e
+      Rails.logger.warn "ForemanPluginTemplate: skipping engine hook (#{e})"
     end
 
     rake_tasks do
