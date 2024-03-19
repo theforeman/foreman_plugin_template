@@ -49,7 +49,7 @@ module ForemanPluginTemplate
       begin
         Host::Managed.send(:include, ForemanPluginTemplate::HostExtensions)
         HostsHelper.send(:include, ForemanPluginTemplate::HostsHelperExtensions)
-      rescue => e
+      rescue StandardError => e
         Rails.logger.warn "ForemanPluginTemplate: skipping engine hook (#{e})"
       end
     end
