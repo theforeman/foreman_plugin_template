@@ -32,7 +32,7 @@ namespace :foreman_plugin_template do
                          "#{ForemanPluginTemplate::Engine.root}/lib/**/*.rb",
                          "#{ForemanPluginTemplate::Engine.root}/test/**/*.rb"]
       end
-    rescue
+    rescue StandardError
       puts 'Rubocop not loaded.'
     end
 
