@@ -7,20 +7,16 @@ end
 begin
   require 'rdoc/task'
 rescue LoadError
-  require 'rdoc/rdoc'
-  require 'rake/rdoctask'
-  RDoc::Task = Rake::RDocTask
+  # No rdoc
+else
+  RDoc::Task.new(:rdoc) do |rdoc|
+    rdoc.rdoc_dir = 'rdoc'
+    rdoc.title    = 'ForemanPluginTemplate'
+    rdoc.options << '--line-numbers'
+    rdoc.rdoc_files.include('README.rdoc')
+    rdoc.rdoc_files.include('lib/**/*.rb')
+  end
 end
-
-RDoc::Task.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'ForemanPluginTemplate'
-  rdoc.options << '--line-numbers'
-  rdoc.rdoc_files.include('README.rdoc')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-APP_RAKEFILE = File.expand_path('test/dummy/Rakefile', __dir__)
 
 Bundler::GemHelper.install_tasks
 
@@ -33,15 +29,15 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
-task default: :test
+task :default
 
 begin
   require 'rubocop/rake_task'
   RuboCop::RakeTask.new
-rescue
-  puts 'Rubocop not loaded.'
+rescue LoadError
+  # No RuboCop
+else
+  Rake::Task[:default].enhance([:rubocop])
 end
 
-task :default do
-  Rake::Task['rubocop'].execute
-end
+Rake::Task[:default].enhance([:test])
