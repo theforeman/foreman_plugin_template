@@ -1,0 +1,45 @@
+name: Rename Script CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+concurrency:
+  group: ${{ github.ref_name }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  rename_test:
+    name: Rename Script Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.0
+
+    - name: Run rename.rb
+      run: |
+        chmod +x rename.rb
+        ./rename.rb your_plugin_name
+
+    - name: Verify Renaming
+      run: |
+
+        if [ ! -f "README.md" ]; then
+          echo "README.md not found!"
+          exit 1
+        fi
+
+        if [ ! -f ".github/workflows/ci.yml" ]; then
+          echo ".github/workflows/ci.yml not found!"
+          exit 1
+        fi
+
+        echo "All files renamed successfully!"
