@@ -50,7 +50,10 @@ uniq-po:
 	done
 
 tx-pull: $(EDITFILES)
-	cd .. && tx pull -f --all
+	# Initialize new languages
+	cd .. && tx pull -f --all --minimum-perc 50
+	# Force update all existing languages
+	cd .. && tx pull -f --minimum-perc 0
 	for f in $(EDITFILES) ; do \
 		sed -i 's/^\("Project-Id-Version: \).*$$/\1$(DOMAIN) $(VERSION)\\n"/' $$f; \
 	done
