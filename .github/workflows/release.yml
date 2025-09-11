@@ -1,0 +1,28 @@
+# The gem needs to be configured on rubygems.org to consider this workflow a trusted publisher
+# 1. Go to https://rubygems.org/gems/foreman_plugin_template/trusted_publishers
+# 2. Click create
+# 3. Select GitHub Actions as Trusted publisher type
+# 4. Set repository owner and name
+# 5. Set release.yml as Workflow filename
+# 6. Ensure it has an environment set
+
+name: Release
+
+on:
+  push:
+    # Pattern matched against refs/tags
+    tags:
+      - '**'
+
+jobs:
+  release:
+    name: Release gem
+    runs-on: ubuntu-latest
+    environment: release
+    if: github.repository_owner == 'theforeman'
+
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: voxpupuli/ruby-release@v0
