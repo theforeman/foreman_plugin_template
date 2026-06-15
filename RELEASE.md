@@ -8,7 +8,7 @@ To release the plugin the following steps are required:
    - For the rest we follow semver
 3. Bump the version in the version file - `lib/foreman_plugin_template/version.rb`
 4. Make a commit "Bump version to $version"
-5. Place a version tag on the commit with `git tag v$version`
+5. Place a version tag on the commit with `git tag --annotate v$version`
    - Ideally the tag should be signed.
 6. Push the commit and the tag to the upstream repository with `git push --follow-tags`
 
