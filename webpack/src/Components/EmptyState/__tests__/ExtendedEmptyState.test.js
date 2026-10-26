@@ -1,11 +1,3 @@
-// Tests work with react-testing-library or enzyme
-// This test uses react testing library
-// https://testing-library.com/docs/react-testing-library/api
-
-// For more information, test utils, and snapshots testing examples:
-// https://github.com/theforeman/foreman-js/tree/master/packages/test
-
-
 import React from 'react';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { render, waitFor, screen } from '@testing-library/react'
@@ -26,12 +18,12 @@ const wrapper = ({ children }) => (
 describe('foreman plugin template', () => {
   it('should render an error alert', async () => {
     APIHelper.get.mockRejectedValue({ error: new Error() });
-    render(<ExtendedEmptyState />, { wrapper });
+    render(<ExtendedEmptyState header="Test header" />, { wrapper });
     await waitFor(() => expect(screen.getByText('Loading description has failed')).toBeInTheDocument());
   });
   it('should render an empty state with custom description', async () => {
     APIHelper.get.mockResolvedValue({ data: { description: 'some description' } });
-    render(<ExtendedEmptyState />, { wrapper });
+    render(<ExtendedEmptyState header="Test header" />, { wrapper });
     await waitFor(() => expect(screen.getByText('some description')).toBeInTheDocument());
   });
 });
