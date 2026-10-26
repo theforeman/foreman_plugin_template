@@ -11,7 +11,8 @@ import { FOREMAN_STORYBOOK } from './Constants';
 
 const ExtendedEmptyState = ({ header }) => {
   // AJAX request using useAPI hook
-  const { response: { description }, status } = useAPI('get', '/foreman_plugin_template/plugin_template_description')
+  const { response, status } = useAPI('get', '/foreman_plugin_template/plugin_template_description');
+  const { description } = response || {};
   
 
   const storybookBtn = (
@@ -33,11 +34,16 @@ const ExtendedEmptyState = ({ header }) => {
       />
     )
     default:
-      return (<SkeletonLoader isLoading={status === STATUS.PENDING} count={5} />);
+      return (
+        <SkeletonLoader
+          status={status || STATUS.PENDING}
+          skeletonProps={{ count: 5 }}
+        />
+      );
   }
 };
-ExtendedEmptyState.PropTypes = {
-  header: PropTypes.string.isRequired
+ExtendedEmptyState.propTypes = {
+  header: PropTypes.string.isRequired,
 };
 
 export default ExtendedEmptyState;
